@@ -1,0 +1,82 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Flow Rate data
+        </mat-panel-title>
+        <mat-panel-description>
+          Input Flow Rate profile
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <input type="file" name="files" class="form-control" #uploads (change)="onFileChange(uploads.files)"/>
+
+      <mat-card-content class="example-headers-align" *ngIf="profileArray.length">
+        <table border="">
+          <thead>
+            <tr>
+              <td> Time </td>
+              <td> Value (m/s)</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of profileArray">
+              <td> {{record.time}} </td>
+              <td> {{record.value}} </td>
+            </tr>
+      
+          </tbody>
+        </table>
+     
+        </mat-card-content>
+
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Input Parameters
+        </mat-panel-title>
+        <mat-panel-description>
+          Select primary input parameters
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      
+      <form class="example-form" [formGroup]="caseForm" (ngSubmit)="onSubmit()" >
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Pressure (in Bar)" type="number" formControlName="pressure">
+          </mat-form-field>
+          
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Lower Temperature (in Celcius)" type="number" formControlName="lower_temperature">
+          </mat-form-field>
+          
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Upper Temperature (in Celcius)" type="number" formControlName="upper_temperature">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <mat-label>Choose accuracy level...</mat-label>
+            
+            <mat-select type="text" formControlName="accuracy_level">
+              <mat-option [value]="level" *ngFor="let level of AccuracyLevels">{{level}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </mat-card-content>
+      
+      </form>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button type="submit" (click)="onSubmit()" mat-stroked-button color="primary"class="btn-block">Submit</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+  </mat-accordion>
+</div>

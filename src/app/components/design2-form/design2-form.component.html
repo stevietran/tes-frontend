@@ -1,0 +1,126 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Do you have cooling load profile...
+          </mat-panel-title>
+          <mat-panel-description>
+            Select one option
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <mat-card-content>
+          <mat-radio-group [(ngModel)]="selectedOption">
+            <mat-radio-button value="Yes" color="primary">Yes</mat-radio-button> <br><br>
+
+            <mat-radio-button value="No" color="warn">No</mat-radio-button>
+          </mat-radio-group>
+        </mat-card-content>
+
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Cooling load data
+          </mat-panel-title>
+          <mat-panel-description>
+            Input Cooling load data
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form class="example-form" [formGroup]="loadForm" *ngIf="selectedOption === 'No'">
+          <mat-form-field class="example-full-width">
+            <mat-label>Choose load type ...</mat-label>
+            
+            <mat-select type="text" formControlName="load_selection">
+              <mat-option [value]="item" *ngFor="let item of LoadtypeList">{{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Nomial cooling load (in kW)" type="number" formControlName="load_value">
+          </mat-form-field>
+
+        </form>
+
+        <mat-card-content *ngIf="selectedOption === 'Yes'">
+          <input type="file" name="files" class="form-control" #uploads (change)="onFileChange(uploads.files)"/>
+          
+          <table border="" *ngIf="profileArray.length">
+            <thead>
+              <tr>
+                <td> Time </td>
+                <td> Value (kW)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of profileArray">
+                <td> {{record.time}} </td>
+                <td> {{record.value}} </td>
+              </tr>
+        
+            </tbody>
+          </table>
+
+        </mat-card-content>
+  
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Input Parameters
+          </mat-panel-title>
+          <mat-panel-description>
+            Select primary input parameters
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <form class="example-form" [formGroup]="caseForm" (ngSubmit)="onSubmit()" >
+          <mat-card-content>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Choose country ...</mat-label>
+              
+              <mat-select type="text" formControlName="country_selection">
+                <mat-option [value]="item" *ngFor="let item of CountryList">{{item}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Safety factor (in %)" type="number" formControlName="safety_factor">
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width">
+              <mat-label>Choose accuracy level...</mat-label>
+              
+              <mat-select type="text" formControlName="accuracy_level">
+                <mat-option [value]="level" *ngFor="let level of AccuracyLevels">{{level}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+          </mat-card-content>
+        
+        </form>
+        
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button type="submit" (click)="onSubmit()" mat-stroked-button color="primary"class="btn-block">Submit</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    
+    </mat-accordion>
+</div>
+  

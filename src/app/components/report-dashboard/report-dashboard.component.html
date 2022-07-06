@@ -1,0 +1,33 @@
+<div *ngIf="DbItems.length">
+  <!--
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center"> 
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Submit a new case</mat-card-title>
+      </mat-card-header>
+    <button (click)="onNewCase()" mat-raised-button color="primary"> New Case </button>
+  </mat-card>
+  </div>
+  -->
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center" *ngFor="let card of DbItems">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Case ID: {{card.id}}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <mat-card-subtitle>
+          Submitted: {{card.submit_time | date: 'medium'}}
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          Status: <b>{{card.status}} </b> 
+        </mat-card-subtitle>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <button [disabled]="card.status == 'SUBMITTED'" routerLink="/report1/{{card.id}}" mat-raised-button color="accent">VIEW</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
