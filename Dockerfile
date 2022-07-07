@@ -21,7 +21,7 @@ RUN npm run build --configuration=production
 FROM nginx:latest
 
 WORKDIR /
-COPY ./startup_local.sh /startup.sh
+COPY ./startup_prod.sh /startup.sh
 RUN chmod +x /startup.sh
 
 # Copy the build output to replace the default nginx contents.
@@ -30,4 +30,5 @@ COPY --from=build /usr/local/app/dist/tes-frontend /usr/share/nginx/html
 # Expose port 80
 EXPOSE 80
 
+# No work on Windows
 CMD ["/startup.sh"]

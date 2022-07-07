@@ -1,3 +1,11 @@
 startup.sh
+
+/dist
+/tmp
+/out-tsc
+
+.vscode/*
+.angular/
+
 node_modules/
 package-lock.json

@@ -1,10 +1,8 @@
- --proxy-config src/proxy.conf.json
-
 # TesFrontend
 
 ## Dockerfile
 
-### Run the container
+### Run the container in local
 
 - Switch context (The aws context was installed for a mock deployment there):
 
@@ -16,7 +14,7 @@
 
 - Run a container, bind the current host port 80 to port 80 of the container:
 
-`docker run -p 80:80 tes-frontend_dev`
+`docker run -p 80:80 --name=tes-frontend-local tes-frontend_dev`
 
 ### Production configuration
 
