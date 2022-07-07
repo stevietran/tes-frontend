@@ -6,7 +6,7 @@ NGINX_CONF=/etc/nginx/conf.d/default.conf
 if ! grep -q "location /api" "$NGINX_CONF"; then
     eval "cat <<EOF
     location /api {
-        proxy_pass http://localhost:8001/api/v1;
+        proxy_pass http://tes-backend:8001/api/v1;
         proxy_http_version 1.1;
     }
     gzip on;

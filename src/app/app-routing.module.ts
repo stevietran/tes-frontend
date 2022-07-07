@@ -9,7 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReportDashboardComponent } from './components/report-dashboard/report-dashboard.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'd2form' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'design', component: DesignTypesComponent },

@@ -102,7 +102,7 @@ export class Design2FormComponent implements OnInit {
       loadData = {
         load_type: LOAD_DATA[1],
         load_selection: this.loadForm.value.load_selection,
-        load_value: this.loadForm.value.load_selection,
+        load_value: this.loadForm.value.load_value,
       }  
     }
     

@@ -10,7 +10,7 @@ WORKDIR /usr/local/app
 COPY ./ /usr/local/app/
 
 # Install all the dependencies
-RUN npm install
+RUN npm install --force
 
 # Generate the build of the application
 RUN npm run build --configuration=production
@@ -21,12 +21,13 @@ RUN npm run build --configuration=production
 FROM nginx:latest
 
 WORKDIR /
-COPY ./startup.sh startup.sh
-RUN chmod +x startup.sh
+COPY ./startup_local.sh /startup.sh
+RUN chmod +x /startup.sh
 
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /usr/local/app/dist/tes-frontend /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
-CMD ["./startup.sh"]
+
+CMD ["/startup.sh"]

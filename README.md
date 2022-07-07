@@ -1,3 +1,5 @@
+ --proxy-config src/proxy.conf.json
+
 # TesFrontend
 
 ## Dockerfile
@@ -10,11 +12,11 @@
 
 - Build the image:
 
-`docker build -t tes-frontend .`
+`docker build -t tes-frontend_dev .`
 
 - Run a container, bind the current host port 80 to port 80 of the container:
 
-`docker run -p 80:80 tes-frontend`
+`docker run -p 80:80 tes-frontend_dev`
 
 ### Production configuration
 
@@ -23,9 +25,18 @@ When add `npm run build --configuration=production`, npm will read `angular.json
 `window.location` is an object that carries information about the page being shown. We can simply refer to it using location alone. `window.location.href` gives the `url` of the current page. It is one of the member fields that the location object carry. Other fields are location.hostname, location.pathname, location.protocol etc.
 
 ## Development
-### Running
+
+- Install node packages:
+
+`npm install`
+
+- Running
 
 `npm start`
+
+The equally command which defined in `package.json`:
+
+`ng serve --proxy-config src/proxy.conf.json`
 
 ### Proxy config
 
