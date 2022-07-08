@@ -1,11 +1,11 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="multi-cards" fxLayout="column" fxLayoutAlign="center center">
     <mat-accordion>
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
             Do you have cooling load profile...
           </mat-panel-title>
-          <mat-panel-description>
+          <mat-panel-description class="right-aligned">
             Select one option
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -26,15 +26,15 @@
       <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Cooling load data
+            Cooling load infomation
           </mat-panel-title>
-          <mat-panel-description>
-            Input Cooling load data
+          <mat-panel-description class="right-aligned">
+            Input/Upload data
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <form class="example-form" [formGroup]="loadForm" *ngIf="selectedOption === 'No'">
-          <mat-form-field class="example-full-width">
+        <form class="form" [formGroup]="loadForm" *ngIf="selectedOption === 'No'">
+          <mat-form-field class="full-width">
             <mat-label>Choose load type ...</mat-label>
             
             <mat-select type="text" formControlName="load_selection">
@@ -43,31 +43,32 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="full-width">
             <input matInput placeholder="Nomial cooling load (in kW)" type="number" formControlName="load_value">
           </mat-form-field>
 
         </form>
 
         <mat-card-content *ngIf="selectedOption === 'Yes'">
-          <input type="file" name="files" class="form-control" #uploads (change)="onFileChange(uploads.files)"/>
+          <input type="file" name="files" #uploads (change)="onFileChange(uploads.files)"/>
           
-          <table border="" *ngIf="profileArray.length">
-            <thead>
-              <tr>
-                <td> Time </td>
-                <td> Value (kW)</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let record of profileArray">
-                <td> {{record.time}} </td>
-                <td> {{record.value}} </td>
-              </tr>
-        
-            </tbody>
-          </table>
-
+          <div *ngIf="profileArray.length">
+            <table border="">
+              <thead>
+                <tr>
+                  <td> Time </td>
+                  <td> Value (kW)</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let record of profileArray">
+                  <td> {{record.time}} </td>
+                  <td> {{record.value}} </td>
+                </tr>
+          
+              </tbody>
+            </table>
+          </div>
         </mat-card-content>
   
         <mat-action-row>
@@ -81,15 +82,15 @@
           <mat-panel-title>
             Input Parameters
           </mat-panel-title>
-          <mat-panel-description>
-            Select primary input parameters
+          <mat-panel-description class="right-aligned">
+            Select input parameters
           </mat-panel-description>
         </mat-expansion-panel-header>
         
-        <form class="example-form" [formGroup]="caseForm" (ngSubmit)="onSubmit()" >
+        <form class="form" [formGroup]="caseForm" (ngSubmit)="onSubmit()" >
           <mat-card-content>
 
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="full-width">
               <mat-label>Choose country ...</mat-label>
               
               <mat-select type="text" formControlName="country_selection">
@@ -98,11 +99,11 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="full-width">
               <input matInput placeholder="Safety factor (in %)" type="number" formControlName="safety_factor">
             </mat-form-field>
     
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="full-width">
               <mat-label>Choose accuracy level...</mat-label>
               
               <mat-select type="text" formControlName="accuracy_level">
