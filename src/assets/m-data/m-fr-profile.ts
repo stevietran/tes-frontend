@@ -1,4 +1,4 @@
-import { ProfileItem } from "./profile-item";
+import { ProfileItem } from "src/app/models/case";
 
 export const M_FR_PROFILE: ProfileItem[] = [
     {time: 1, value: 100},

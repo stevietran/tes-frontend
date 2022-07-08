@@ -32,6 +32,7 @@ export interface Params_Design2 {
 
 // Flow Rate
 export interface ProfileItem{
+    parent_id?: any;
     time?: number;
     value?: number;
 }
