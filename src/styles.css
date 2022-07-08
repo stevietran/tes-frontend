@@ -10,6 +10,7 @@ body {
 }
 .app-toolbar {
   justify-content: space-between;
+  height: 50px;
   position: sticky;
   top: 0;
   left: 0;
@@ -18,12 +19,7 @@ body {
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 
-.positronx {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-/* box class */
+/* box class for matcard*/
 .box {
   position: relative;
   top: 0;
@@ -62,10 +58,47 @@ body {
   z-index: -1;
 }
 
+/* mat-pannel */
+mat-panel-description.right-aligned {
+  flex-grow: 0;
+}
+
+.sample-button{
+  margin-top: 50px;
+  margin-left: 80px;
+  height: 50px;
+  width: 200px;
+}
+
+/* multi cards wrapper */
+.multi-cards {
+  position: relative;
+  top: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.multi-cards .form {
+  min-width: 100%;
+  max-width: 300px;
+  width: 100%;
+}
+
+.multi-cards .full-width {
+  width: 100%;
+}
+
+.small-card {
+  opacity: 1;
+  padding: 20px 20px 20px 20px;
+  max-width: 300px;
+}
+
 /* Log in wrapper */
 .login-wrapper {
   height: 100%;
 }
+
 .login-wrapper .example-form {
   min-width: 100%;
   max-width: 300px;
@@ -98,7 +131,6 @@ body {
 }
 
 /* Table */
-
 .demo-table {
   width: 100%;
 }

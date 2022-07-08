@@ -1,33 +1,62 @@
-<div *ngIf="DbItems.length">
-  <!--
-  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center"> 
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Submit a new case</mat-card-title>
-      </mat-card-header>
-    <button (click)="onNewCase()" mat-raised-button color="primary"> New Case </button>
-  </mat-card>
+<div class="multi-cards" fxLayout="row" fxLayoutGap="60px">
+  <div>
+    <button class="sample-button" (click)="onNewCase()" mat-raised-button color="accent">Submit New Case</button>
   </div>
-  -->
-  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center" *ngFor="let card of DbItems">
-
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Case ID: {{card.id}}</mat-card-title>
-      </mat-card-header>
-      
-      <mat-card-content>
-        <mat-card-subtitle>
-          Submitted: {{card.submit_time | date: 'medium'}}
-        </mat-card-subtitle>
-        <mat-card-subtitle>
-          Status: <b>{{card.status}} </b> 
-        </mat-card-subtitle>
-      </mat-card-content>
-      
-      <mat-card-actions>
-        <button [disabled]="card.status == 'SUBMITTED'" routerLink="/report1/{{card.id}}" mat-raised-button color="accent">VIEW</button>
-      </mat-card-actions>
-    </mat-card>
+  <div>
+    <button class="sample-button" (click)="getCasesStatus_mock()" mat-raised-button color="primary">Fetch Submitted Cases</button>
   </div>
 </div>
+
+<div class="multi-cards" *ngIf="DbItems_submitted.length">
+  <div  class="multi-cards" fxLayout="row wrap">
+    <div class="small-card" *ngFor="let card of DbItems_submitted">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Case ID: {{card.id}}</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <mat-card-subtitle>
+            Submitted: {{card.submit_time | date: 'medium'}}
+          </mat-card-subtitle>
+          <mat-card-subtitle>
+            Status: <b>{{card.status}} </b> 
+          </mat-card-subtitle>
+        </mat-card-content>
+        
+        <mat-card-actions>
+          <button [disabled]="card.status === 'Submitted'" routerLink="/report1/{{card.id}}" mat-raised-button color="accent">VIEW</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+<div class="multi-cards">
+  <div  class="multi-cards" fxLayout="row wrap" *ngIf="DbItems_done.length">
+    <div class="small-card" *ngFor="let card of DbItems_done">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Case ID: {{card.id}}</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <mat-card-subtitle>
+            Submitted: {{card.submit_time | date: 'medium'}}
+          </mat-card-subtitle>
+          <mat-card-subtitle>
+            Status: <b>{{card.status}} </b> 
+          </mat-card-subtitle>
+        </mat-card-content>
+        
+        <mat-card-actions>
+          <button [disabled]="card.status == 'Submitted'" routerLink="/report1/{{card.id}}" mat-raised-button color="accent">VIEW</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+  </div>
+</div>
+
+
