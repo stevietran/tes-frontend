@@ -11,10 +11,11 @@ import { M_DASHBOARD } from 'src/assets/m-data/m-dashboard';
 })
 export class ReportDashboardComponent implements OnInit {
   //DbItems: DashboardItem[] = M_DASHBOARD
-  DbItems: DashboardItem[] = []
-  DbItems_done: DashboardItem[] = []
-  DbItems_submitted: DashboardItem[] = []
+  DbItems: DashboardItem[] = [];
+  DbItems_done: DashboardItem[] = [];
+  DbItems_submitted: DashboardItem[] = [];
   panelOpenState = false;
+
   constructor(
     private caseService: CaseService,
     private router: Router
@@ -22,7 +23,10 @@ export class ReportDashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onViewResult(id: any){
+    console.log(id);
+    this.router.navigateByUrl(`/report2/${id}`);
+  }
 
   onNewCase(){
     this.router.navigateByUrl('/design')

@@ -1,4 +1,8 @@
 import { ProfileItem } from "./case";
+export interface ViewItem{
+    key: string;
+    value: any;
+}
 
 export interface ReportApp1{
     id: any,

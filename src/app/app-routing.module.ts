@@ -7,8 +7,10 @@ import { Design1ReportComponent } from './components/design1-report/design1-repo
 import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReportDashboardComponent } from './components/report-dashboard/report-dashboard.component';
+import { Design2ReportComponent } from './components/design2-report/design2-report.component';
 
 const routes: Routes = [
+  { path: 'report2/:id', component: Design2ReportComponent},
   { path: '', pathMatch: 'full', redirectTo: 'd2form' },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
