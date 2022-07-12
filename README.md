@@ -22,8 +22,9 @@ When add `npm run build --configuration=production`, npm will read `angular.json
 
 `window.location` is an object that carries information about the page being shown. We can simply refer to it using location alone. `window.location.href` gives the `url` of the current page. It is one of the member fields that the location object carry. Other fields are location.hostname, location.pathname, location.protocol etc.
 
-## Development
+# Development
 
+## Install packages
 - Install node packages:
 
 `npm install`
@@ -36,33 +37,24 @@ The equally command which defined in `package.json`:
 
 `ng serve --proxy-config src/proxy.conf.json`
 
-### Proxy config
+## Install angular
+
+- `sudo npm install -g @angular/cli`
+
+- Install app template:
+
+`ng new my-app`
+
+- Add components to the specified folder:
+
+`ng generate component components/<component-name> --module app`
+
+# Tracked issues and workarounds
+## Proxy config
 
 - Error: `\src\proxy.conf.json does not exist`
 
 Change to `./src/proxy.conf.json` in `angular.json`
-
-### Install angular
-
-`sudo npm install -g @angular/cli`
-
-Install app template:
-
-`ng new my-app`
-
-Run the app:
-
-``` bash
-cd my-app
-ng serve
-```
-
-Add components:
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-
-# Tracked issues and workarounds
 
 ## Docker network
 
@@ -107,4 +99,5 @@ server {
 ```
 
 Change the config for correct direction to `/api` endpoint. This is done in `startup.sh`.
+
 

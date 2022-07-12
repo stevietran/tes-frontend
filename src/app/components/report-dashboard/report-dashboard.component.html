@@ -32,7 +32,6 @@
   </div>
 </div>
 
-
 <div class="multi-cards">
   <div  class="multi-cards" fxLayout="row wrap" *ngIf="DbItems_done.length">
     <div class="small-card" *ngFor="let card of DbItems_done">
@@ -51,7 +50,7 @@
         </mat-card-content>
         
         <mat-card-actions>
-          <button [disabled]="card.status == 'Submitted'" routerLink="/report1/{{card.id}}" mat-raised-button color="accent">VIEW</button>
+          <button (click)="onViewResult(card.id)" mat-raised-button color="accent">VIEW</button>
         </mat-card-actions>
       </mat-card>
     </div>

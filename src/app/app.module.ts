@@ -22,6 +22,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { httpInterceptorProviders } from './http-interceptors';
 import { Design2FormComponent } from './components/design2-form/design2-form.component';
+import { Design2ReportComponent } from './components/design2-report/design2-report.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { Design2FormComponent } from './components/design2-form/design2-form.com
     Design1FormComponent,
     ReportDashboardComponent,
     Design1ReportComponent,
-    Design2FormComponent
+    Design2FormComponent,
+    Design2ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { Design2FormComponent } from './components/design2-form/design2-form.com
     MatExpansionModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgChartsModule
   ],
   providers: [
     httpInterceptorProviders,

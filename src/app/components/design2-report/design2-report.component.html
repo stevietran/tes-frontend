@@ -1,0 +1,128 @@
+<mat-list class="multi-cards" *ngIf="tes_attr.length">
+  <div mat-subheader>Optimisation result</div>
+  <div fxLayout="row wrap">
+    <div class="small-card" *ngFor="let item of optimiser"> 
+      <mat-list-item>
+        <div mat-line>{{item.key}}</div>
+        <div mat-line> {{item.value}} </div>
+      </mat-list-item>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-subheader>TES Type</div>
+  <div fxLayout="row wrap">
+    <div class="small-card" *ngFor="let item of tes_attr"> 
+      <mat-list-item>
+        <div mat-line>{{item.key}}</div>
+        <div mat-line> {{item.value}} </div>
+      </mat-list-item>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-subheader>TES Operation variables</div>
+  <div fxLayout="row wrap">
+    <div class="small-card"  *ngFor="let item of tes_op_attr"> 
+      <mat-list-item>
+        <div mat-line>{{item.key}}</div>
+        <div mat-line> {{item.value}} </div>
+      </mat-list-item>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-subheader>Heat transfer fluid (HTF)</div>
+  <div fxLayout="row wrap">
+    <div class="small-card"  *ngFor="let item of htf"> 
+      <mat-list-item>
+        <div mat-line>{{item.key}}</div>
+        <div mat-line> {{item.value}} </div>
+      </mat-list-item>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-subheader>TES Material</div>
+  <div fxLayout="row wrap">
+    <div class="small-card"  *ngFor="let item of material"> 
+      <mat-list-item>
+        <div mat-line>{{item.key}}</div>
+        <div mat-line> {{item.value}} </div>
+      </mat-list-item>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-subheader>Load Split Profile</div> 
+  <div fxLayout="row wrap">
+    <div class="small-card">
+      <div style="display: block;">
+        <canvas baseChart width="400" height="400"
+                    [data]="lineChartData_loadsplit"
+                    [options]="lineChartOptions"
+                    [type]="lineChartType">
+        </canvas>
+      </div>
+    </div>
+    <div class="small-card">
+      <table class="table table-responsive table-condensed">
+        <tr>
+          <th *ngFor="let label of lineChartData_loadsplit.labels">{{label}}</th>
+        </tr>
+        <tr *ngFor="let d of lineChartData_loadsplit.datasets; let i=index" [class]="'line-'+i">
+          <td *ngFor="let label of lineChartData_loadsplit.labels; let j=index">{{d && d.data[j]}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-subheader>Electric Split Profile</div> 
+  <div fxLayout="row wrap">
+    <div class="small-card">
+      <div style="display: block;">
+        <canvas baseChart width="400" height="400"
+                    [data]="lineChartData_electricsplit"
+                    [options]="lineChartOptions"
+                    [type]="lineChartType">
+        </canvas>
+      </div>
+    </div>
+    <div class="small-card">
+      <table class="table table-responsive table-condensed">
+        <tr>
+          <th *ngFor="let label of lineChartData_electricsplit.labels">{{label}}</th>
+        </tr>
+        <tr *ngFor="let d of lineChartData_electricsplit.datasets; let i=index" [class]="'line-'+i">
+          <td *ngFor="let label of lineChartData_electricsplit.labels; let j=index">{{d && d.data[j]}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-subheader>Cost Profile</div> 
+  <div fxLayout="row wrap">
+    <div class="small-card">
+      <div style="display: block;">
+        <canvas baseChart width="400" height="400"
+                    [data]="lineChartData_cost"
+                    [options]="lineChartOptions"
+                    [type]="lineChartType">
+        </canvas>
+      </div>
+    </div>
+    <div class="small-card">
+      <table class="table table-responsive table-condensed">
+        <tr>
+          <th *ngFor="let label of lineChartData_cost.labels">{{label}}</th>
+        </tr>
+        <tr *ngFor="let d of lineChartData_cost.datasets; let i=index" [class]="'line-'+i">
+          <td *ngFor="let label of lineChartData_cost.labels; let j=index">{{d && d.data[j]}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</mat-list>
