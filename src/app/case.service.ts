@@ -35,7 +35,7 @@ export class CaseService {
 
   /** GET: get status of all submitted cases */
   getCases(): Observable<DashboardResponse> {
-    return this.http.get<DashboardResponse>(this.caseUrl, this.httpOptions)
+    return this.http.post<DashboardResponse>(`${this.caseUrl}/all`, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );

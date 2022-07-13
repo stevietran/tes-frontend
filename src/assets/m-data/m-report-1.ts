@@ -1,5 +1,4 @@
 import { ReportApp1 } from "src/app/models/report";
-import { ReportApp2 } from "src/app/models/report";
 
 export const M_REPORT_1_DES:any =
 {

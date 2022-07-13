@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CaseService } from 'src/app/case.service';
-import { DashboardItem} from 'src/app/models/case';
+import { CASE_STATUS, DashboardItem} from 'src/app/models/case';
 import { M_DASHBOARD } from 'src/assets/m-data/m-dashboard';
 
 @Component({
@@ -11,7 +11,6 @@ import { M_DASHBOARD } from 'src/assets/m-data/m-dashboard';
 })
 export class ReportDashboardComponent implements OnInit {
   //DbItems: DashboardItem[] = M_DASHBOARD
-  DbItems: DashboardItem[] = [];
   DbItems_done: DashboardItem[] = [];
   DbItems_submitted: DashboardItem[] = [];
   panelOpenState = false;
@@ -23,6 +22,7 @@ export class ReportDashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   onViewResult(id: any){
     console.log(id);
     this.router.navigateByUrl(`/report2/${id}`);
@@ -31,31 +31,33 @@ export class ReportDashboardComponent implements OnInit {
   onNewCase(){
     this.router.navigateByUrl('/design')
   }
+  
   getCasesStatus(): void{
     this.caseService.getCases()
     .subscribe({
-      next: (cases) => this.DbItems = cases.result 
+      next: (cases) => {
+        let DbItems: DashboardItem[] = cases.result ;
+        this.DbItems_done = [];
+        this.DbItems_submitted = [];
+    
+        for (var item of DbItems){
+          if (item.status == CASE_STATUS[0]){
+            this.DbItems_submitted.push(item);
+          }
+          else if (item.status == CASE_STATUS[1]){
+            this.DbItems_done.push(item);
+          }
+        }
+      }
     })
-
-    this.DbItems_done = [];
-    this.DbItems_submitted = [];
-
-    for (var item of this.DbItems){
-      if (item.status == "Submitted"){
-        this.DbItems_submitted.push(item);
-      }
-      else{
-        this.DbItems_done.push(item);
-      }
-    }
   }
 
   getCasesStatus_mock(): void{
-    this.DbItems = M_DASHBOARD;
+    let DbItems = M_DASHBOARD;
     this.DbItems_done = [];
     this.DbItems_submitted = [];
 
-    for (var item of this.DbItems){
+    for (var item of DbItems){
       if (item.status == "Submitted"){
         this.DbItems_submitted.push(item);
       }

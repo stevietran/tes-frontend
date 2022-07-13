@@ -3,4 +3,4 @@ export const M_LOADTYPE_LIST = [
     { id:'2', name: 'ON_HALF_PEAK'}
   ];
 
-  export const LOAD_DATA = ['PROFILE', 'NOMIAL'];
+export const LOAD_DATA = ['PROFILE', 'NOMIAL'];

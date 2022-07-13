@@ -1,14 +1,15 @@
 <div class="multi-cards" fxLayout="row" fxLayoutGap="60px">
   <div>
-    <button class="sample-button" (click)="onNewCase()" mat-raised-button color="accent">Submit New Case</button>
+    <button class="sample-button" (click)="getCasesStatus()" mat-raised-button color="primary">Fetch Submitted Cases</button>
   </div>
+
   <div>
-    <button class="sample-button" (click)="getCasesStatus_mock()" mat-raised-button color="primary">Fetch Submitted Cases</button>
+    <button class="sample-button" (click)="onNewCase()" mat-raised-button color="accent">Submit New Case</button>
   </div>
 </div>
 
-<div class="multi-cards" *ngIf="DbItems_submitted.length">
-  <div  class="multi-cards" fxLayout="row wrap">
+<div class="multi-cards">
+  <div  class="multi-cards" fxLayout="row wrap" *ngIf="DbItems_submitted.length">
     <div class="small-card" *ngFor="let card of DbItems_submitted">
       <mat-card>
         <mat-card-header>

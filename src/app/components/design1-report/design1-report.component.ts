@@ -13,9 +13,11 @@ export class Design1ReportComponent implements OnInit {
   @Input() reportID?: string;
   @Input() displayedColumns: string[] = ['demo-name', 'demo-value'];
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private location: Location,
-    private design1Service: Design1Service) { }
+    private design1Service: Design1Service
+  ) { }
 
   getData(): void{
     const id = String(this.route.snapshot.paramMap.get('id'));

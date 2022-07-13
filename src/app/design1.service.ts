@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { M_REPORT_1, M_REPORT_1_DES } from 'src/assets/m-data/m-report-1';
-import { ReportApp1 } from 'src/app/models/report';
+import { ReportApp1, ReportApp2 } from 'src/app/models/report';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -15,6 +15,7 @@ export interface TableElement {
 })
 export class Design1Service {
   private resultUrl = `${environment.apiURL}/api/result`;
+  private resultUrl_2 = `${environment.apiURL}/api/result/app2`;
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -36,6 +37,15 @@ export class Design1Service {
   getResult(id: Number): Observable<ReportApp1>{
     const url = `${this.resultUrl}/${id}`
     return this.http.get<ReportApp1>(url, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // Get result of app2 from api
+  getResult_2(id: Number): Observable<ReportApp2>{
+    const url = `${this.resultUrl_2}/${id}`
+    return this.http.get<ReportApp2>(url, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );

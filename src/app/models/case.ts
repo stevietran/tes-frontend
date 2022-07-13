@@ -1,3 +1,5 @@
+export const CASE_STATUS = ['SUBMITTED', 'FINISHED'];
+
 export interface AccuracyLevel{
     id: string;
     name: string;
