@@ -11,7 +11,7 @@ import { Design2ReportComponent } from './components/design2-report/design2-repo
 
 const routes: Routes = [
   { path: 'report2/:id', component: Design2ReportComponent},
-  { path: '', pathMatch: 'full', redirectTo: 'd2form' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'design', component: DesignTypesComponent },
