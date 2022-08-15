@@ -1,8 +1,14 @@
-startup.sh
+Dockerfile*
+README.md
+.dockerignore
+.gitignore
 
-/dist
-/tmp
-/out-tsc
+# nginx/
+data/
+
+dist/
+tmp/
+out-tsc/
 
 .vscode/*
 .angular/

@@ -1,0 +1,35 @@
+# Stage 1: Compile and Build angular codebase
+FROM node:lts-alpine as build
+
+# Set the working directory
+WORKDIR /usr/local/app
+
+# Copy package.json file
+COPY package.json .
+
+# Install all the dependencies
+RUN npm install --legacy-peer-deps
+
+# Add the source code to app
+COPY src ./src
+COPY angular.json tsconfig.app.json tsconfig.json tsconfig.spec.json .
+
+# Generate the build of the application
+RUN npm run build --configuration=production
+
+# Stage 2: Serve app with nginx server
+
+# Use official nginx image as the base image
+FROM nginx:stable-alpine
+
+# Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy nginx config file
+COPY nginx/nginx_local.conf /etc/nginx/nginx.conf
+
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /usr/local/app/dist/tes-frontend /usr/share/nginx/html
+
+# Start NgInx service
+CMD ["nginx", "-g", "daemon off;"]
