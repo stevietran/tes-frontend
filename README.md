@@ -17,7 +17,7 @@
 
 - Run a container, bind the current host port 80 to port 80 of the container:
 
-`docker run --add-host=host.docker.internal:host-gateway -p 80:80 --name=tes-frontend-local tes-frontend_dev`
+`docker run --add-host=host.docker.internal:host-gateway -p 8080:80 --name=tes-frontend-local tes-frontend_dev`
 
 - Error:
 ```bash

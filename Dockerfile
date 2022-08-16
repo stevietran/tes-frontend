@@ -26,7 +26,7 @@ FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy nginx config file
-COPY nginx/nginx_local.conf /etc/nginx/nginx.conf
+COPY nginx/nginx_prod.conf /etc/nginx/nginx.conf
 
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /usr/local/app/dist/tes-frontend /usr/share/nginx/html
