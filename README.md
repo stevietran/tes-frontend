@@ -19,11 +19,6 @@
 
 `docker run --add-host=host.docker.internal:host-gateway -p 8080:80 --name=tes-frontend-local tes-frontend_dev`
 
-- Error:
-```bash
-2022/08/12 06:53:39 [error] 33#33: *2 open() "/usr/share/nginx/html/api/auth/login" failed (2: No such file or directory), client: 172.17.0.1, server: localhost, request: "POST //api/auth/login HTTP/1.1", host: "localhost", referrer: "http://localhost/login"
-172.17.0.1 - - [12/Aug/2022:06:53:39 +0000] "POST //api/auth/login HTTP/1.1" 404 555 "http://localhost/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" "-"
-```
 ### Production configuration
 
 When add `npm run build --configuration=production`, npm will read `angular.json` file and replace config file `src/environments/environment.ts` to the repective file set in it.
