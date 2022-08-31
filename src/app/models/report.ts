@@ -1,4 +1,4 @@
-import { ProfileItem } from "./case";
+import { ProfileItemArray } from "./case";
 export interface ViewItem{
     key: string;
     value: any;
@@ -27,11 +27,14 @@ export interface ReportApp2{
     htf_attr: any,
     material: string,
     material_attr: any,
-    cost: number,
+    cost?: number,
     run_time: number,
     id?: number,
     case_id?: 1,
-    load_split_profile: ProfileItem[],
-    electric_split_profile: ProfileItem[],
-    cost_profile: ProfileItem[];
+    load_split_profile: ProfileItemArray[],
+    electric_split_profile: ProfileItemArray[],
+    cost_split_profile: ProfileItemArray[],
+    load_split_profile_no_tes: ProfileItemArray[],
+    electric_split_profile_no_tes: ProfileItemArray[],
+    cost_split_profile_no_tes: ProfileItemArray[]
 }

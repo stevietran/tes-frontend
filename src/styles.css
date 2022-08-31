@@ -91,7 +91,8 @@ mat-panel-description.right-aligned {
 .small-card {
   opacity: 1;
   padding: 20px 20px 20px 20px;
-  max-width: 300px;
+  max-width: 600px;
+  text-align: center;
 }
 
 /* Log in wrapper */

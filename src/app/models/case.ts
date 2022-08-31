@@ -39,6 +39,14 @@ export interface ProfileItem{
     value?: number;
 }
 
+
+export interface ProfileItemArray{
+    with_tes?: any;
+    parent_id?: any;
+    time: any;
+    value: Array<number>;
+}
+
 export interface FlowrateItem extends ProfileItem {
     params_id: number;
 }
