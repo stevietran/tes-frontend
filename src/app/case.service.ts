@@ -9,8 +9,6 @@ import { CaseSubmit, CaseSubmit_2, SubmitResponse, DashboardItem, DashboardRespo
 })
 export class CaseService {
   public app_type: string = "";
-  private caseUrl = `${environment.apiURL}/api/case`;
-  private case2Url = `${environment.apiURL}/api/case/pls`;
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -19,7 +17,7 @@ export class CaseService {
 
   /** POST: submit a case */
   submitCase(req: CaseSubmit): Observable<SubmitResponse> {
-    return this.http.post<SubmitResponse>(this.caseUrl, req, this.httpOptions)
+    return this.http.post<SubmitResponse>(environment.caseUrl, req, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );
@@ -27,7 +25,7 @@ export class CaseService {
 
   /** POST: submit a case for App 2*/
   submitCase_2(req: CaseSubmit_2): Observable<SubmitResponse> {
-    return this.http.post<SubmitResponse>(this.case2Url, req, this.httpOptions)
+    return this.http.post<SubmitResponse>(environment.case2Url, req, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );
@@ -35,7 +33,7 @@ export class CaseService {
 
   /** GET: get status of all submitted cases */
   getCases(): Observable<DashboardResponse> {
-    return this.http.post<DashboardResponse>(`${this.caseUrl}/all`, this.httpOptions)
+    return this.http.post<DashboardResponse>(`${environment.caseUrl}/all`, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );

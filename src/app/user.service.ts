@@ -9,7 +9,6 @@ import { LoginResponse, SignupRequest, User } from './models/user';
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl = { log: `${environment.apiURL}/api/auth/login`, signup: `${environment.apiURL}/api/auth/signup`}
   private auth_token = "";
 
   private httpOptions = {
@@ -33,7 +32,7 @@ export class UserService {
     .set('username', user.username)
     .set('password', user.password);
 
-    return this.http.post<LoginResponse>(this.userUrl.log, body, this.httpOptionsForm)
+    return this.http.post<LoginResponse>(environment.logUrl, body, this.httpOptionsForm)
     .pipe(
       tap((res: LoginResponse) => this.auth_token = res.token_type + " " + res.access_token),
       catchError(this.handleError)
@@ -42,7 +41,7 @@ export class UserService {
 
   /** POST: request new user */
   signUp(req: SignupRequest): Observable<SignupRequest> {
-    return this.http.post<SignupRequest>(this.userUrl.signup, req, this.httpOptions)
+    return this.http.post<SignupRequest>(environment.signupUrl, req, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );

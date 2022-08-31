@@ -14,8 +14,6 @@ export interface TableElement {
   providedIn: 'root'
 })
 export class Design1Service {
-  private resultUrl = `${environment.apiURL}/api/result`;
-  private resultUrl_2 = `${environment.apiURL}/api/result/app2`;
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -35,7 +33,7 @@ export class Design1Service {
 
   // Get result from api
   getResult(id: Number): Observable<ReportApp1>{
-    const url = `${this.resultUrl}/${id}`
+    const url = `${environment.resultUrl}/${id}`
     return this.http.get<ReportApp1>(url, this.httpOptions)
     .pipe(
       catchError(this.handleError)
@@ -44,7 +42,7 @@ export class Design1Service {
 
   // Get result of app2 from api
   getResult_2(id: Number): Observable<ReportApp2>{
-    const url = `${this.resultUrl_2}/${id}`
+    const url = `${environment.resultUrl_2}/${id}`
     return this.http.get<ReportApp2>(url, this.httpOptions)
     .pipe(
       catchError(this.handleError)

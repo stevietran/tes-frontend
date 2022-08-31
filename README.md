@@ -1,20 +1,23 @@
 # TesFrontend
 
-## Dockerfile
-
-### Run the container in local
+## Test the container in local
 
 - Switch context (The aws context was installed for a mock deployment there):
 
 `docker context use default`
 
-- Build the image:
+- Build the image using `Dockerfile_local` file : 48 s
 
-`docker build -t tes-frontend_dev .`
+`docker build -f Dockerfile_local -t tes-frontend_dev .`
+
+```bash
+--tag , -t		Name and optionally a tag in the 'name:tag' format
+--file , -f		Name of the Dockerfile (Default is 'PATH/Dockerfile')
+```
 
 - Run a container, bind the current host port 80 to port 80 of the container:
 
-`docker run -p 80:80 --name=tes-frontend-local tes-frontend_dev`
+`docker run --add-host=host.docker.internal:host-gateway -p 8080:80 --name=tes-frontend-local tes-frontend_dev`
 
 ### Production configuration
 
